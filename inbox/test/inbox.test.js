@@ -6,23 +6,18 @@ const{interface , bytecode } = require('../compile');
 //here Web3 is constructor so it is in capotalized manner and web 3 is instants
 const web3 = new Web3(ganache.provider()); // creating instance // lower case
 
-
 let accounts;
 let inbox;
 
-
 beforeEach(async()=>{
     //get lis tof accounts
-
     accounts = await web3.eth.getAccounts();
-
         
         // use one for those account to deploy
         // the contract
     inbox = await new web3.eth.Contract(JSON.parse(interface))
         .deploy({data:bytecode,arguments:['hi there !']})
         .send({from : accounts[0],gas:'1000000'})
-
 
 });
 
